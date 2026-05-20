@@ -8,7 +8,7 @@ import co.edu.udistrital.model.structures.Scheduler;
 import co.edu.udistrital.view.View;
 
 /**
- * controlador principal que maneja el ciclo de vida del programa.
+ * controlador principal que centraliza y orquesta el flujo mvc.
  *
  * @author Jimmy86gb
  */
@@ -17,12 +17,18 @@ public class Controller {
     private Scheduler scheduler;
     private View view;
 
+    /**
+     * inicializa estructuras logicas y la vista.
+     */
     public Controller() {
         taskList = new SimpleList();
         scheduler = new Scheduler();
         view = new View();
     }
 
+    /**
+     * inicia el bucle iterativo mostrando el menu de operaciones.
+     */
     public void run() {
         int option = 0;
         do {
@@ -46,6 +52,9 @@ public class Controller {
         } while (option != 5);
     }
 
+    /**
+     * gestiona la creacion y validacion de una nueva tarea.
+     */
     private void addTask() {
         String name = view.readString("Ingrese el nombre de la tarea: ");
         if (taskList.isIn(name)) {
@@ -57,6 +66,9 @@ public class Controller {
         view.showMsg("Tarea agregada con exito");
     }
 
+    /**
+     * captura el nombre y gestiona la remocion de la lista.
+     */
     private void removeTask() {
         if (taskList.isEmpty()) { view.showMsg("No hay tareas"); return; }
         
@@ -69,6 +81,9 @@ public class Controller {
         }
     }
 
+    /**
+     * recorre la lista completa y delega a la vista su impresion.
+     */
     private void showTasks() {
         if (taskList.isEmpty()) { view.showMsg("No hay tareas registradas"); return; }
         
@@ -80,6 +95,9 @@ public class Controller {
         }
     }
 
+    /**
+     * dispara la logica greedy de agendamiento y muestra metricas.
+     */
     private void processScheduling() {
         if (taskList.isEmpty()) { view.showMsg("No hay tareas para procesar"); return; }
         

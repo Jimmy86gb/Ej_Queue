@@ -12,12 +12,20 @@ public class SimpleList {
     private Node tail;
     private int size;
 
+    /**
+     * inicializa la lista vacia.
+     */
     public SimpleList() {
         head = null;
         tail = null;
         size = 0;
     }
 
+    /**
+     * agrega una nueva tarea al final de la lista.
+     *
+     * @param data tarea a insertar
+     */
     public void add(Task data) {
         Node newNode = new Node(data);
         if (head == null) {
@@ -30,6 +38,12 @@ public class SimpleList {
         size++;
     }
 
+    /**
+     * elimina una tarea buscando por su nombre en la lista simple.
+     *
+     * @param name nombre de la tarea a eliminar
+     * @return true si se elimino, false si no se encontro
+     */
     public boolean removeByName(String name) {
         if (head == null) { return false; }
         
@@ -53,6 +67,12 @@ public class SimpleList {
         return false;
     }
 
+    /**
+     * verifica si una tarea ya existe en la lista.
+     *
+     * @param name nombre a buscar
+     * @return true si existe, false en caso contrario
+     */
     public boolean isIn(String name) {
         Node current = head;
         while (current != null) {
@@ -62,7 +82,26 @@ public class SimpleList {
         return false;
     }
 
+    /**
+     * obtiene el primer nodo de la lista.
+     *
+     * @return nodo cabeza
+     */
     public Node getHead() { return head; }
+
+    /**
+     * obtiene la cantidad de elementos de la lista.
+     *
+     * @return tamano
+     */
     public int getSize() { return size; }
-    public boolean isEmpty() { return size == 0; }
+
+    /**
+     * verifica si la lista esta vacia.
+     *
+     * @return true si esta vacia, false si tiene elementos
+     */
+    public boolean isEmpty() { 
+        return size == 0; 
+    }
 }

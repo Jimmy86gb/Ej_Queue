@@ -11,6 +11,11 @@ import co.edu.udistrital.model.structures.SimpleList;
  */
 public class BubbleSort {
     
+    /**
+     * ordena ascendentemente la lista intercambiando la data de los nodos.
+     *
+     * @param list lista a ser ordenada
+     */
     public static void sort(SimpleList list) {
         if (list.getHead() == null) { return; }
         

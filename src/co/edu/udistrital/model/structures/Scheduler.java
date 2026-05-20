@@ -10,6 +10,13 @@ import static co.edu.udistrital.model.sort.BubbleSort.sort;
  */
 public class Scheduler {
     
+    /**
+     * distribuye las tareas de la lista en los procesadores optimizando tiempos.
+     *
+     * @param list lista de tareas a procesar
+     * @param numProcessors numero de procesadores disponibles
+     * @return arreglo de colas con las asignaciones correspondientes
+     */
     public Queue[] schedule(SimpleList list, int numProcessors) {
         Queue[] processors = new Queue[numProcessors];
         for (int i = 0; i < numProcessors; i++) { 
@@ -32,6 +39,13 @@ public class Scheduler {
         return processors;
     }
 
+    /**
+     * calcula el tiempo medio de finalizacion de todas las tareas.
+     *
+     * @param processors arreglo de procesadores evaluados
+     * @param totalTasks total de tareas en el sistema
+     * @return tiempo promedio en minutos
+     */
     public double calculateAverageTime(Queue[] processors, int totalTasks) {
         if (totalTasks == 0 || processors == null) { return 0.0; }
         
