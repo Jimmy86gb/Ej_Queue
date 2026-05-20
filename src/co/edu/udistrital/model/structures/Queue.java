@@ -20,7 +20,26 @@ public class Queue {
         tail = null;
         totalTime = 0;
     }
+    
+    /**
+    * extrae y retorna la tarea al frente de la cola (regla fifo).
+    *
+    * @return la tarea extraida, o null si la cola esta vacia
+    */
+   public Task dequeue() {
+       if (head == null) { return null; }
 
+       Task taskToReturn = head.getData();
+
+       head = head.getNext();
+
+       if (head == null) { tail = null; }
+
+       totalTime -= taskToReturn.getTime();
+
+       return taskToReturn;
+   }
+    
     /**
      * encola una tarea al final y suma su duracion al acumulado.
      *
@@ -54,5 +73,14 @@ public class Queue {
      */
     public Node getHead() { 
         return head; 
+    }
+    
+    /**
+     * verifica si la cola esta vacia.
+     *
+     * @return true si esta vacia, false en caso contrario
+     */
+    public boolean isEmpty() {
+        return head == null;
     }
 }

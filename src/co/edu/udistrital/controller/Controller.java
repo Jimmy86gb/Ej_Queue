@@ -16,6 +16,7 @@ public class Controller {
     private SimpleList taskList;
     private Scheduler scheduler;
     private View view;
+    private Queue[] processors;
 
     /**
      * inicializa estructuras logicas y la vista.
@@ -24,6 +25,7 @@ public class Controller {
         taskList = new SimpleList();
         scheduler = new Scheduler();
         view = new View();
+        processors = null;
     }
 
     /**
@@ -37,7 +39,8 @@ public class Controller {
             view.showMsg("2. Eliminar Tarea");
             view.showMsg("3. Mostrar Tareas");
             view.showMsg("4. Procesar Tareas");
-            view.showMsg("5. Salir");
+            view.showMsg("5. Ejecutar Tareas (Dequeue)");
+            view.showMsg("6. Salir");
             
             option = view.readInt("Elija una opcion: ", 1);
             
@@ -46,10 +49,11 @@ public class Controller {
                 case 2 -> removeTask();
                 case 3 -> showTasks();
                 case 4 -> processScheduling();
-                case 5 -> view.showMsg("Saliendo del programa...");
+                case 5 -> executeTasks();
+                case 6 -> view.showMsg("Saliendo del programa...");
                 default -> view.showMsg("Opcion no valida");
             }
-        } while (option != 5);
+        } while (option != 6);
     }
 
     /**
@@ -102,7 +106,8 @@ public class Controller {
         if (taskList.isEmpty()) { view.showMsg("No hay tareas para procesar"); return; }
         
         int numProcessors = view.readInt("Ingrese el numero de procesadores: ", 1);
-        Queue[] processors = scheduler.schedule(taskList, numProcessors);
+        
+        this.processors = scheduler.schedule(taskList, numProcessors);
         
         view.showMsg("\n--- Resultados de la Planificacion ---");
         for (int i = 0; i < processors.length; i++) {
@@ -117,5 +122,31 @@ public class Controller {
         
         double avg = scheduler.calculateAverageTime(processors, taskList.getSize());
         view.showMsg("\nTiempo promedio optimizado: " + avg + " min.");
+    }
+    
+    /**
+     * simula la ejecucion desencolando las tareas asignadas.
+     */
+    public void executeTasks(){
+        if (this.processors == null) {
+            view.showMsg("Primero debes procesar las tareas (Opcion 4).");
+            return;
+        }
+
+        view.showMsg("\n--- Iniciando Ejecucion de Tareas ---");
+
+        for (int i = 0; i < processors.length; i++) {
+            view.showMsg("Procesador " + (i + 1) + " trabajando:");
+
+            // usamos el dequeue para vaciar la cola simulando el trabajo real
+            while (!processors[i].isEmpty()) {
+                Task terminada = processors[i].dequeue();
+                view.showMsg(" -> Tarea '" + terminada.getName() + "' finalizada.");
+            }
+        }
+        view.showMsg("Todos los procesadores han terminado sus tareas");
+        
+        // Limpiamos los procesadores despues de ejecutarlos
+        this.processors = null; 
     }
 }
