@@ -1,5 +1,8 @@
-package co.edu.udistrital.model.structures;
+package co.edu.udistrital.model.entities.logic;
 
+import co.edu.udistrital.model.structures.Node;
+import co.edu.udistrital.model.structures.Queue;
+import co.edu.udistrital.model.structures.SimpleList;
 import static co.edu.udistrital.model.sort.BubbleSort.sort;
 
 /**
