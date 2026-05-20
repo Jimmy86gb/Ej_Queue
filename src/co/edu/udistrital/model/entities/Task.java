@@ -6,7 +6,7 @@ package co.edu.udistrital.model.entities;
  * @author Jimmy86gb
  */
 public class Task {
-    private final double time;
+    private final double ti;
     private final String name;
 
     /**
@@ -16,7 +16,7 @@ public class Task {
      * @param name nombre de la tarea
      */
     public Task(double time, String name) {
-        this.time = time;
+        this.ti = time;
         this.name = name;
     }
 
@@ -25,7 +25,7 @@ public class Task {
      *
      * @return tiempo en minutos
      */
-    public double getTime() { return time; }
+    public double getTi() { return ti; }
 
     /**
      * obtiene el nombre de la tarea.

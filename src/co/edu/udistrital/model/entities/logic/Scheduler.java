@@ -56,7 +56,7 @@ public class Scheduler {
             double clock = 0;
             Node current = q.getHead();
             while (current != null) {
-                clock += current.getData().getTime();
+                clock += current.getData().getTi();
                 totalSum += clock;
                 current = current.getNext();
             }

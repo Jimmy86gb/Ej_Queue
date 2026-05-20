@@ -90,7 +90,7 @@ public class Controller {
         view.showMsg("\n--- Tareas Registradas ---");
         Node current = taskList.getHead();
         while (current != null) {
-            view.showMsg("Nombre: " + current.getData().getName() + " - Tiempo: " + current.getData().getTime() + " min");
+            view.showMsg("Nombre: " + current.getData().getName() + " - Tiempo: " + current.getData().getTi() + " min");
             current = current.getNext();
         }
     }
@@ -109,7 +109,7 @@ public class Controller {
             view.showMsgInline("\nProcesador " + (i + 1) + ": ");
             Node current = processors[i].getHead();
             while (current != null) {
-                view.showMsgInline("[" + current.getData().getName() + " (" + current.getData().getTime() + " min)] ");
+                view.showMsgInline("[" + current.getData().getName() + " (" + current.getData().getTi() + " min)] ");
                 current = current.getNext();
             }
             view.showMsg("\n -> Tiempo total: " + processors[i].getTotalTime() + " min");

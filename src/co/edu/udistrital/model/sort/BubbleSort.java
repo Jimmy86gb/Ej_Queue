@@ -24,7 +24,7 @@ public class BubbleSort {
             swapped = false;
             Node current = list.getHead();
             while (current.getNext() != null) {
-                if (current.getData().getTime() > current.getNext().getData().getTime()) {
+                if (current.getData().getTi() > current.getNext().getData().getTi()) {
                     Task temp = current.getData();
                     current.setData(current.getNext().getData());
                     current.getNext().setData(temp);

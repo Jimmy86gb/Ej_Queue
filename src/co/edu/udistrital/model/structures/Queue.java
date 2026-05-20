@@ -35,7 +35,7 @@ public class Queue {
             tail.setNext(newNode);
             tail = newNode;
         }
-        totalTime += task.getTime();
+        totalTime += task.getTi();
     }
 
     /**
