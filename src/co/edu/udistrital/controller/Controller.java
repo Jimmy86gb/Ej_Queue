@@ -13,9 +13,9 @@ import co.edu.udistrital.view.View;
  * @author Jimmy86gb
  */
 public class Controller {
-    private SimpleList taskList;
-    private Scheduler scheduler;
-    private View view;
+    private final SimpleList taskList;
+    private final Scheduler scheduler;
+    private final View view;
 
     /**
      * inicializa estructuras logicas y la vista.

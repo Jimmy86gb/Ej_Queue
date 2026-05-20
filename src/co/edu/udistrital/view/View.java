@@ -8,7 +8,7 @@ import java.util.Scanner;
  * @author Jimmy86gb
  */
 public class View {
-    private Scanner sc;
+    private final Scanner sc;
 
     /**
      * inicializa el scanner de consola.

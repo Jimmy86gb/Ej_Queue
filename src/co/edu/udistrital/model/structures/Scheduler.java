@@ -1,6 +1,5 @@
 package co.edu.udistrital.model.structures;
 
-import co.edu.udistrital.model.entities.Task;
 import static co.edu.udistrital.model.sort.BubbleSort.sort;
 
 /**

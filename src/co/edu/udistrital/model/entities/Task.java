@@ -6,8 +6,8 @@ package co.edu.udistrital.model.entities;
  * @author Jimmy86gb
  */
 public class Task {
-    private double time;
-    private String name;
+    private final double time;
+    private final String name;
 
     /**
      * constructor de la tarea.
