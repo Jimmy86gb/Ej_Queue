@@ -8,6 +8,7 @@ package co.edu.udistrital.model.entities;
 public class Task {
     private double time;
     private String name;
+    private boolean isDone; // nuevo atributo de estado
 
     /**
      * constructor de la tarea.
@@ -18,6 +19,7 @@ public class Task {
     public Task(double time, String name) {
         this.time = time;
         this.name = name;
+        this.isDone = false; // por defecto inicia sin hacer
     }
 
     /**
@@ -33,4 +35,18 @@ public class Task {
      * @return nombre de la tarea
      */
     public String getName() { return name; }
+
+    /**
+     * verifica si la tarea ya fue ejecutada.
+     *
+     * @return true si esta hecha, false si no
+     */
+    public boolean isDone() { return isDone; }
+
+    /**
+     * cambia el estado de realizacion de la tarea.
+     *
+     * @param done nuevo estado
+     */
+    public void setDone(boolean done) { this.isDone = done; }
 }

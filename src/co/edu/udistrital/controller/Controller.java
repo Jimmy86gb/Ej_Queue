@@ -4,7 +4,7 @@ import co.edu.udistrital.model.entities.Task;
 import co.edu.udistrital.model.structures.SimpleList;
 import co.edu.udistrital.model.structures.Node;
 import co.edu.udistrital.model.structures.Queue;
-import co.edu.udistrital.model.structures.Scheduler;
+import co.edu.udistrital.model.logic.Scheduler;
 import co.edu.udistrital.view.View;
 
 /**
@@ -86,7 +86,7 @@ public class Controller {
     }
 
     /**
-     * recorre la lista completa y delega a la vista su impresion.
+     * recorre la lista completa y delega a la vista su impresion incluyendo el estado.
      */
     private void showTasks() {
         if (taskList.isEmpty()) { view.showMsg("No hay tareas registradas"); return; }
@@ -94,7 +94,9 @@ public class Controller {
         view.showMsg("\n--- Tareas Registradas ---");
         Node current = taskList.getHead();
         while (current != null) {
-            view.showMsg("Nombre: " + current.getData().getName() + " - Tiempo: " + current.getData().getTime() + " min");
+            Task t = current.getData();
+            
+            view.showMsg("Nombre: " + t.getName() + " - Tiempo: " + t.getTime() + " min ");
             current = current.getNext();
         }
     }
@@ -125,7 +127,7 @@ public class Controller {
     }
     
     /**
-     * simula la ejecucion desencolando las tareas asignadas.
+     * simula la ejecucion desencolando las tareas asignadas y marcandolas como hechas.
      */
     public void executeTasks(){
         if (this.processors == null) {
@@ -138,15 +140,18 @@ public class Controller {
         for (int i = 0; i < processors.length; i++) {
             view.showMsg("Procesador " + (i + 1) + " trabajando:");
 
-            // usamos el dequeue para vaciar la cola simulando el trabajo real
             while (!processors[i].isEmpty()) {
                 Task terminada = processors[i].dequeue();
+                
+                // marcamos la tarea como finalizada
+                taskList.removeByName(terminada.getName());
+                
                 view.showMsg(" -> Tarea '" + terminada.getName() + "' finalizada.");
             }
         }
+        
         view.showMsg("Todos los procesadores han terminado sus tareas");
         
-        // Limpiamos los procesadores despues de ejecutarlos
         this.processors = null; 
     }
 }
